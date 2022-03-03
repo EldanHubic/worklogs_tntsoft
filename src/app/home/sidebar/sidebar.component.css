@@ -1,0 +1,13 @@
+#sidebar {
+  background-color: #1f074d;
+  list-style: none;
+
+  height: 100vh;
+  color: white;
+}
+
+li {
+  padding: 1rem;
+  cursor: pointer;
+}
+

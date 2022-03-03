@@ -1,0 +1,7 @@
+footer {
+  position: sticky;
+  top: 100vh;
+  background-color: #181d80;
+ 
+  color: aliceblue;
+}
