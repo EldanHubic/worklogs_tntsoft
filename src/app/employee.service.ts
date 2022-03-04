@@ -19,6 +19,10 @@ export class EmployeeService {
     return this.firestore.collection('Employee').snapshotChanges();
   }
 
+  getUsers() {
+    return this.firestore.collection('users').snapshotChanges();
+  }
+
   add(employee: Employee) {
     return new Promise<any>((resolve, reject) => {
       this.firestore
@@ -33,7 +37,7 @@ export class EmployeeService {
     });
   }
 
-  delete(employee: Employee) {
+  delete(employee: any) {
     return this.firestore.collection('Employee').doc(employee.id).delete();
   }
 

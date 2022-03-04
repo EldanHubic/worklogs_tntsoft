@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { AuthService } from 'src/app/auth.service';
 import { EmployeeService } from 'src/app/employee.service';
 import { User } from 'src/app/models/user';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css'],
 })
-export class SidebarComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private empService: EmployeeService
   ) {}
 
@@ -22,7 +22,6 @@ export class SidebarComponent implements OnInit {
   admin: boolean | null | undefined;
   users: User[] = [];
   user!: User;
-  imageUrl: string = './admin.png';
 
   ngOnInit(): void {
     const auth = getAuth();
@@ -46,9 +45,5 @@ export class SidebarComponent implements OnInit {
         });
       });
     });
-  }
-
-  logout() {
-    this.authService.signOut();
   }
 }

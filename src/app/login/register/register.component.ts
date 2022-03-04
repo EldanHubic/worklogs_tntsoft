@@ -10,10 +10,11 @@ export class RegisterComponent implements OnInit {
   constructor(public authService: AuthService) {}
   username: string = '';
   password: string = '';
+  displayName: string = '';
 
   ngOnInit(): void {}
 
-  register(username: string, password: string) {
-    this.authService.SignUp(username, password);
+  register(username: string, password: string, displayName: string) {
+    this.authService.SignUp(username, password, displayName);
   }
 }

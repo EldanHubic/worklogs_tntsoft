@@ -1,8 +1,10 @@
-<ul id="sidebar" class="m-0">
+<ul id="sidebar" class="m-0 p-0">
   <h1 style="padding: 1rem">Worklogs</h1>
 
   <li routerLink="user-management">User management</li>
   <li routerLink="logs">Logs</li>
+  <li routerLink="users">Users</li>
+  <li routerLink="dashboard">Dashboard</li>
   <li>
     <button
       pButton
@@ -11,4 +13,10 @@
       (click)="logout()"
     ></button>
   </li>
+
+  <li class="display-user">
+    Logged in as:
+    {{ email }}
+  </li>
+  
 </ul>

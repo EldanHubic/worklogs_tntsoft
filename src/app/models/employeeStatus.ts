@@ -1,5 +1,5 @@
-export enum EmployeeStatus {
-    ACTIVE,
-    INACTIVE
+export interface EmployeeStatus {
+    active: string,
+    
     }
     

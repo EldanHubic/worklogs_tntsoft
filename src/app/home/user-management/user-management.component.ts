@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from 'src/app/employee.service';
+
 import { Employee } from 'src/app/models/employee';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-user-management',
@@ -11,14 +13,15 @@ import { Employee } from 'src/app/models/employee';
 export class UserManagementComponent implements OnInit {
   display: boolean = false;
   value!: Date;
-  
+  selectStatus: string[] = ['ACTIVE', 'INACTIVE'];
   firstName: string = '';
   lastName: string = '';
   dateOfBirth!: Date;
   startWorkDate!: Date;
-  endWorkDate!: Date | null;
+  endWorkDate!: Date;
   status: string = '';
-
+  minDateValue!: Date;
+  maxDateValue!: Date;
   private id!: string;
   public employeeForm!: FormGroup;
   public editEmployeeForm!: FormGroup;
@@ -28,6 +31,7 @@ export class UserManagementComponent implements OnInit {
   editDisplay: boolean = false;
 
   employees: Employee[] = [];
+  users: User[] = [];
 
   constructor(
     private empService: EmployeeService,
@@ -36,9 +40,9 @@ export class UserManagementComponent implements OnInit {
     this.employeeForm = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
-      dateOfBirth: [''],
-      startWorkDate: [''],
-      endWorkDate: [''],
+      dateOfBirth: [],
+      startWorkDate: [],
+      endWorkDate: [],
       status: [''],
     });
   }
@@ -52,6 +56,23 @@ export class UserManagementComponent implements OnInit {
         } as Employee;
       });
     });
+    this.empService.getUsers().subscribe((resp) => {
+      this.users = resp.map((document) => {
+        return {
+          uid: document.payload.doc.id,
+          ...(document.payload.doc.data() as {}),
+        } as User;
+      });
+    });
+
+    let today = new Date();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    let prevMonth = month === 0 ? 11 : month - 1;
+
+    let nextMonth = month === 11 ? 0 : month + 1;
+
+    this.maxDateValue = today;
   }
 
   addEmployee() {
@@ -59,9 +80,9 @@ export class UserManagementComponent implements OnInit {
     this.employeeForm = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
-      dateOfBirth: [''],
-      startWorkDate: [''],
-      endWorkDate: [''],
+      dateOfBirth: [],
+      startWorkDate: [],
+      endWorkDate: [],
       status: [''],
     });
     this.display = false;

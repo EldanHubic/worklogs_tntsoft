@@ -4,6 +4,6 @@ export interface Employee {
   lastName: string;
   dateOfBirth: Date;
   startWorkDate: Date;
-  endWorkDate: Date | null;
+  endWorkDate: Date;
   status: string; 
 }

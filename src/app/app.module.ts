@@ -23,12 +23,16 @@ import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
-import { RegisterComponent } from './login/register/register.component';
+
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { AuthService } from './auth.service';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { UserManagementComponent } from './home/user-management/user-management.component';
 import { LogsComponent } from './home/logs/logs.component';
+import { VerifyEmailComponent } from './login/verify-email/verify-email.component';
+import { DashboardComponent } from './login/dashboard/dashboard.component';
+import { RegisterComponent } from './login/register/register.component';
+import { UsersComponent } from './login/users/users.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +42,15 @@ import { LogsComponent } from './home/logs/logs.component';
 
     FooterComponent,
     MainComponent,
-    RegisterComponent,
+   
     ForgotPasswordComponent,
     SidebarComponent,
     UserManagementComponent,
     LogsComponent,
+    VerifyEmailComponent,
+    DashboardComponent,
+    RegisterComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

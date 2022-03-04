@@ -11,3 +11,7 @@ li {
   cursor: pointer;
 }
 
+.display-user {
+  position: sticky;
+  top: 90vh;
+}

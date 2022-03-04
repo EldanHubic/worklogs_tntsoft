@@ -1,7 +1,11 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { User } from './models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -30,15 +34,47 @@ export class AuthService {
       });
   }
 
-  SignUp(email: string, password: string) {
+  SignUp(email: string, password: string, displayName: string) {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
         console.log('You are Successfully signed up!', res);
+        this.afs.collection('users').add({
+          uid: res.user?.uid,
+          displayName: displayName,
+          email: res.user?.email,
+          photoURL: res.user?.photoURL,
+          emailVerified: res.user?.emailVerified,
+          admin: false,
+        });
         this.router.navigate(['login']);
       })
       .catch((error) => {
         console.log('Something is wrong:', error.message);
+      });
+  }
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null && user.emailVerified !== false ? true : false;
+  }
+
+  SendVerificationMail() {
+    return this.afAuth.currentUser
+      .then((u: any) => u.sendEmailVerification())
+      .then(() => {
+        this.router.navigate(['verify-email-address']);
+      });
+  }
+
+  ForgotPassword(passwordResetEmail: string) {
+    return this.afAuth
+      .sendPasswordResetEmail(passwordResetEmail)
+      .then(() => {
+        window.alert('Password reset email sent, check your inbox.');
+      })
+      .catch((error) => {
+        window.alert(error);
       });
   }
 

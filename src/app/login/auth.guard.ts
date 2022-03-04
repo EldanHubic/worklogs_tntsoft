@@ -22,10 +22,9 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (localStorage.getItem('user') === 'null') {
-      console.log('You are not logged in');
-
+    if (this._authService.isLoggedIn !== true) {
       this.router.navigate(['login']);
+      console.log('you must be logged in');
     }
     return true;
   }

@@ -1,0 +1,28 @@
+<div class="container mt-3">
+    <h1>List of users</h1>
+  <p-table
+    [value]="users"
+    styleClass="p-datatable-striped"
+    *ngIf="admin"
+    responsiveLayout="scroll"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Display Name</th>
+        <th>Email</th>
+        <th>Email Verified</th>
+        <th>Admin</th>
+        <th>Delete</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.displayName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.emailVerified }}</td>
+        <td>{{ user.admin }}</td>
+        <td><button pButton class="p-button-danger p-button-rounded" icon="pi pi-trash"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
