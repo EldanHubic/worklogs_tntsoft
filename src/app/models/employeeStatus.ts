@@ -1,5 +1,3 @@
 export interface EmployeeStatus {
-    active: string,
-    
-    }
-    
+  active: string;
+}

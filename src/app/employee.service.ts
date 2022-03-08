@@ -4,7 +4,9 @@ import {
   CollectionReference,
   DocumentData,
 } from '@angular/fire/compat/firestore';
+import { getAuth } from 'firebase/auth';
 import { Employee } from './models/employee';
+import { User } from './models/user';
 @Injectable({
   providedIn: 'root',
 })
@@ -37,8 +39,12 @@ export class EmployeeService {
     });
   }
 
-  delete(employee: any) {
+  deleteEmployee(employee: Employee) {
     return this.firestore.collection('Employee').doc(employee.id).delete();
+  }
+
+  deleteUser(user: User) {
+    return this.firestore.collection('users').doc(user.uid).delete();
   }
 
   update(employee: Employee) {

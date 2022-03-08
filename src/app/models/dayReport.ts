@@ -1,3 +1,5 @@
+import { Employee } from "./employee";
+
 export interface DayReport {
     date: Date;
     sickDay: boolean;
@@ -6,4 +8,5 @@ export interface DayReport {
     workEnd: any;
     break: any;
     workDay: boolean;
+    employee: Employee;
 }

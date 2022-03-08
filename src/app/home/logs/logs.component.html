@@ -1,1 +1,84 @@
-<p>logs works!</p>
+<div class="m-3">
+  <label for="calendar">Pick a date: </label>
+  <p-calendar
+    class="ms-3"
+    id="calendar"
+    [(ngModel)]="pickMonthYear"
+    view="month"
+    dateFormat="mm/yy"
+  ></p-calendar>
+</div>
+
+<p-button >Click</p-button>
+<div class="container">
+  <p-accordion [multiple]="true" *ngFor="let employee of employees">
+    <p-accordionTab header="{{ employee.firstName + ' ' + employee.lastName }}" >
+      <table class="table table-borderless">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">Date</th>
+            <th scope="col">Sick Day</th>
+            <th scope="col">Vacation</th>
+            <th scope="col">Work Day</th>
+            <th scope="col">Work Start</th>
+            <th scope="col">Work End</th>
+            <th scope="col">Break</th>
+            <th scope="col">Save</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td>{{ pickMonthYear | date: 'M.yyyy' }}</td>
+            <td>
+              <p-checkbox
+                [(ngModel)]="isSickDayChecked"
+                [binary]="true"
+              ></p-checkbox>
+            </td>
+            <td>
+              <p-checkbox
+                [(ngModel)]="isVacationChecked"
+                [binary]="true"
+              ></p-checkbox>
+            </td>
+            <td>
+              <p-checkbox [(ngModel)]="isWorkDay" [binary]="true"></p-checkbox>
+            </td>
+            <td>
+              <p-calendar
+                [(ngModel)]="startWork"
+                [timeOnly]="true"
+                inputId="time"
+                placeholder="Starting working hours"
+              ></p-calendar>
+            </td>
+            <td>
+              <p-calendar
+                [(ngModel)]="endWork"
+                [timeOnly]="true"
+                inputId="time"
+                placeholder="End working hours"
+              ></p-calendar>
+            </td>
+            <td>
+              <p-calendar
+                [(ngModel)]="break"
+                [timeOnly]="true"
+                inputId="time"
+                placeholder="Break"
+              ></p-calendar>
+            </td>
+            <td>
+              <button
+                (click)="save(employee)"
+                pButton
+                class="p-button-save p-button-rounded"
+                icon="pi pi-trash"
+              ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </p-accordionTab>
+  </p-accordion>
+</div>

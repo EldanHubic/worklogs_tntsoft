@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService } from 'src/app/employee.service';
 
@@ -11,7 +11,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./user-management.component.css'],
 })
 export class UserManagementComponent implements OnInit {
+  loading: boolean = false;
   display: boolean = false;
+  search: string = '';
   value!: Date;
   selectStatus: string[] = ['ACTIVE', 'INACTIVE'];
   firstName: string = '';
@@ -111,7 +113,9 @@ export class UserManagementComponent implements OnInit {
   }
 
   deleteEmployee(employee: Employee) {
-    this.empService.delete(employee);
+    console.log(employee);
+
+    this.empService.deleteEmployee(employee);
   }
 
   showDialog() {
@@ -150,4 +154,8 @@ export class UserManagementComponent implements OnInit {
     this.status = '';
     this.editDisplay = false;
   }
+  getEventValue($event:any) :string {
+    return $event.target.value;
+  } 
+  
 }

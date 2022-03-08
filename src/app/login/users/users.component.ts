@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { AuthService } from 'src/app/auth.service';
 import { EmployeeService } from 'src/app/employee.service';
 import { User } from 'src/app/models/user';
 
@@ -9,8 +10,14 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  constructor(private empService: EmployeeService) {}
-
+  constructor(
+    private empService: EmployeeService,
+    private authService: AuthService
+  ) {}
+  display: boolean = false;
+  username: string = '';
+  password: string = '';
+  displayNameForReg: string = '';
   email: string | null | undefined;
   displayName: string | null | undefined;
   photoURL: string | null | undefined;
@@ -43,8 +50,24 @@ export class UsersComponent implements OnInit {
     });
   }
 
-deleteUser(user: User) {
-  this.empService.delete(user);
-}
+  deleteUser(user: User) {
+    if (!user.admin) {
+      this.empService.deleteUser(user);
+      console.log(user);
+    } else {
+      console.log('you can not delete admin user');
+    }
+  }
 
+  showDialog(): void {
+    this.display = true;
+  }
+
+  register(username: string, password: string, displayName: string) {
+    this.authService.SignUp(username, password, displayName);
+    this.username = '';
+    this.password = '';
+    this.displayNameForReg = '';
+    this.display = false;
+  }
 }

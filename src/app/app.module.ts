@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { InputNumberModule } from 'primeng/inputnumber';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -33,6 +33,8 @@ import { VerifyEmailComponent } from './login/verify-email/verify-email.componen
 import { DashboardComponent } from './login/dashboard/dashboard.component';
 import { RegisterComponent } from './login/register/register.component';
 import { UsersComponent } from './login/users/users.component';
+import { AccordionModule } from 'primeng/accordion';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { UsersComponent } from './login/users/users.component';
 
     FooterComponent,
     MainComponent,
-   
+
     ForgotPasswordComponent,
     SidebarComponent,
     UserManagementComponent,
@@ -67,6 +69,9 @@ import { UsersComponent } from './login/users/users.component';
     TableModule,
     ReactiveFormsModule,
     DropdownModule,
+    InputNumberModule,
+    AccordionModule,
+    CheckboxModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

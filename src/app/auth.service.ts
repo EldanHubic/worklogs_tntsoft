@@ -1,11 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { User } from './models/user';
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +18,7 @@ export class AuthService {
     this.userData = afAuth.authState;
   }
 
+  
   SignIn(email: string, password: string) {
     this.afAuth
       .signInWithEmailAndPassword(email, password)
@@ -40,14 +38,14 @@ export class AuthService {
       .then((res) => {
         console.log('You are Successfully signed up!', res);
         this.afs.collection('users').add({
-          uid: res.user?.uid,
+          id: res.user?.uid,
           displayName: displayName,
           email: res.user?.email,
           photoURL: res.user?.photoURL,
           emailVerified: res.user?.emailVerified,
           admin: false,
         });
-        this.router.navigate(['login']);
+        
       })
       .catch((error) => {
         console.log('Something is wrong:', error.message);

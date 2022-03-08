@@ -9,6 +9,14 @@
 li {
   padding: 1rem;
   cursor: pointer;
+  
+}
+
+
+
+li:hover {
+  font-size: 1.3rem;
+  transition: 0.8s;
 }
 
 .display-user {
