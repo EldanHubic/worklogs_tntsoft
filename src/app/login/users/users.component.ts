@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { ConfirmationService } from 'primeng/api';
 import { AuthService } from 'src/app/auth.service';
 import { EmployeeService } from 'src/app/employee.service';
 import { User } from 'src/app/models/user';
@@ -12,7 +13,8 @@ import { User } from 'src/app/models/user';
 export class UsersComponent implements OnInit {
   constructor(
     private empService: EmployeeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private confirmationService: ConfirmationService
   ) {}
   display: boolean = false;
   username: string = '';
@@ -47,6 +49,15 @@ export class UsersComponent implements OnInit {
           }
         });
       });
+    });
+  }
+
+  confirm(user: User) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to perform this action?',
+      accept: () => {
+        this.deleteUser(user);
+      },
     });
   }
 

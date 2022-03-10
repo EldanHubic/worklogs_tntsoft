@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth.service';
 import { EmployeeService } from 'src/app/employee.service';
 import { User } from 'src/app/models/user';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit {
     private authService: AuthService,
     private empService: EmployeeService
   ) {}
-
+  items: MenuItem[] = [];
   email: string | null | undefined;
   displayName: string | null | undefined;
   photoURL: string | null | undefined;
@@ -25,6 +26,7 @@ export class SidebarComponent implements OnInit {
   imageUrl: string = './admin.png';
 
   ngOnInit(): void {
+    
     const auth = getAuth();
 
     this.empService.getUsers().subscribe((resp) => {

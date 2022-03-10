@@ -437,7 +437,7 @@
               pButton
               class="p-button-danger p-button-rounded"
               icon="pi pi-trash"
-              (click)="deleteEmployee(employee)"
+              (click)="confirm(employee)"
             ></button>
           </td>
         </tr>
@@ -450,3 +450,7 @@
     </p-table>
   </div>
 </div>
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog>

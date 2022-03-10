@@ -1,0 +1,25 @@
+.scroll-table {
+  height: 300px;
+  overflow: auto;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+.p-button.p-button-icon-only {
+  width: 4rem;
+}
+
+
+p-checkbox {
+  padding-top: 0.73rem;
+}
+
+
+.export-excel {
+  text-align: right;
+}

@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/employee.service';
 import { Employee } from 'src/app/models/employee';
-import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+import {
+  eachDayOfInterval,
+  endOfMonth,
+  format,
+  getDay,
+  isWeekend,
+  startOfMonth,
+} from 'date-fns';
 import { DayReport } from 'src/app/models/dayReport';
-import { validateCallback } from '@firebase/util';
-import { DayReportsService } from 'src/app/day-reports.service';
-import { newArray } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-logs',
@@ -13,23 +18,25 @@ import { newArray } from '@angular/compiler/src/util';
   styleUrls: ['./logs.component.css'],
 })
 export class LogsComponent implements OnInit {
-  constructor(
-    private empService: EmployeeService,
-    private dayReportService: DayReportsService
-  ) {}
-  pickMonthYear: Date = new Date();
-
-  startWork!: Date;
-  endWork!: Date;
-  break!: Date;
-  currentMonthDays: number[] = new Array(this.daysInMonth(this.pickMonthYear));
-  currentMonth: number = this.daysInMonth(this.pickMonthYear);
-  employees: Employee[] = [];
-  dayReports: DayReport[] = [];
-  isSickDayChecked!: boolean;
-  isVacationChecked!: boolean;
+  constructor(private empService: EmployeeService) {}
+  workStart: string = '';
+  workEnd: string = '';
+  breakStart: string = '';
+  breakEnd: string = '';
   isWorkDay!: boolean;
+  isVacation!: boolean;
+  isSickDay!: boolean;
+  weekDayName: string = '';
+  pickMonthYear: Date = new Date();
+  today = new Date();
+  dayReports: DayReport[] = [];
+  employees: Employee[] = [];
+  nizZastavica: boolean[] = [];
+  interval: Date[] = [];
+  fileName: string = 'employeeTable.xlsx';
+
   ngOnInit(): void {
+    //lista svih employeea koji se spremaju u niz
     this.empService.get().subscribe((resp) => {
       this.employees = resp.map((document) => {
         return {
@@ -37,31 +44,112 @@ export class LogsComponent implements OnInit {
           ...(document.payload.doc.data() as {}),
         } as Employee;
       });
+      console.log(this.employees.length);
+
+      this.generateDaysInMonth(this.pickMonthYear);
+      // this.employees.forEach((employee) => {
+      //   employee.dayReports.forEach((dayReport) => {
+      //     this.isSickDay = dayReport.sickDay;
+      //     this.isVacation = dayReport.vacation;
+      //     this.isWorkDay = dayReport.workDay;
+      //     this.workStart = dayReport.workStart;
+      //     this.workEnd = dayReport.workEnd;
+      //     this.breakStart = dayReport.breakStart;
+      //   });
+      // });
     });
   }
 
-  save(employee: Employee) {
-    let dayReport: DayReport = {
-      date: this.pickMonthYear,
-      sickDay: this.isSickDayChecked,
-      vacation: this.isVacationChecked,
-      workStart: this.startWork,
-      workEnd: this.endWork,
-      break: this.break,
-      workDay: this.isWorkDay ? true : false,
-      employee: employee,
-    };
+  onSubmit() {}
 
-    console.log(dayReport);
+  generateDaysInMonth(pickedMonth: Date) {
+    this.interval = eachDayOfInterval({
+      start: startOfMonth(pickedMonth),
+      end: endOfMonth(pickedMonth),
+    });
+
+    this.employees.forEach((employee) => {
+      employee.dayReports = [];
+      this.interval.forEach((day) => {
+        let defaultDayReport: DayReport = {
+          date: format(day, 'dd.MM.yyyy'),
+          sickDay: false,
+          vacation: false,
+          workStart: '7:00',
+          workEnd: '15:00',
+          breakStart: '12:00',
+          breakEnd: '13:00',
+          workDay: !isWeekend(day),
+          employeeID: employee.id,
+        };
+
+        employee.dayReports.push(defaultDayReport);
+      });
+      console.log(employee);
+    });
+
+    this.interval.forEach((day) => {
+      this.getWeekDayName(day);
+    });
   }
 
-  daysInMonth(pickedMonth: any) {
-    return new Date(
-      pickedMonth.getFullYear(),
-      pickedMonth.getMonth() + 1,
-      0
-    ).getDate();
+  getWeekDayName(day: Date) {
+    let name = getDay(day);
+    let dayName: string = '';
+    switch (name + 1) {
+      case 1: {
+        dayName = 'Sunday';
+        break;
+      }
+      case 2: {
+        dayName = 'Monday';
+        break;
+      }
+      case 3: {
+        dayName = 'Tuesday';
+        break;
+      }
+      case 4: {
+        dayName = 'Wednesday';
+        break;
+      }
+      case 5: {
+        dayName = 'Thursday';
+        break;
+      }
+      case 6: {
+        dayName = 'Friday';
+        break;
+      }
+      case 7: {
+        dayName = 'Saturday ';
+        break;
+      }
+      default:
+        break;
+    }
+
+    return dayName;
   }
 
-  
+  changeInput(dayReports: DayReport[]) {
+    console.log(dayReports);
+  }
+
+  saveDayReports(employee: Employee) {
+    console.log(employee);
+  }
+
+  exportExcelTable() {
+    /* pass here the table id */
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName);
+  }
 }

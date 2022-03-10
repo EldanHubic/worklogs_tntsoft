@@ -35,6 +35,9 @@ import { RegisterComponent } from './login/register/register.component';
 import { UsersComponent } from './login/users/users.component';
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -72,8 +75,11 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputNumberModule,
     AccordionModule,
     CheckboxModule,
+    ConfirmDialogModule,
+    TabViewModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

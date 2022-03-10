@@ -1,4 +1,4 @@
-import { DayReport } from "./dayReport";
+import { DayReport } from './dayReport';
 
 export interface Employee {
   id: string;
@@ -7,5 +7,6 @@ export interface Employee {
   dateOfBirth: Date;
   startWorkDate: Date;
   endWorkDate: Date;
-  status: string; 
+  status: string;
+  dayReports: DayReport[];
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ConfirmationService } from 'primeng/api';
 import { EmployeeService } from 'src/app/employee.service';
 
 import { Employee } from 'src/app/models/employee';
@@ -37,7 +38,8 @@ export class UserManagementComponent implements OnInit {
 
   constructor(
     private empService: EmployeeService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private confirmationService: ConfirmationService
   ) {
     this.employeeForm = this.formBuilder.group({
       firstName: [''],
@@ -46,6 +48,7 @@ export class UserManagementComponent implements OnInit {
       startWorkDate: [],
       endWorkDate: [],
       status: [''],
+      dayReports: [],
     });
   }
 
@@ -86,6 +89,7 @@ export class UserManagementComponent implements OnInit {
       startWorkDate: [],
       endWorkDate: [],
       status: [''],
+      dayReports: [],
     });
     this.display = false;
   }
@@ -122,6 +126,15 @@ export class UserManagementComponent implements OnInit {
     this.display = true;
   }
 
+  confirm(employee: Employee) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to perform this action?',
+      accept: () => {
+        this.deleteEmployee(employee);
+      },
+    });
+  }
+
   showEditDialog(employee: Employee) {
     console.log(employee);
     this.id = employee.id;
@@ -143,6 +156,7 @@ export class UserManagementComponent implements OnInit {
       startWorkDate: this.startWorkDate,
       endWorkDate: this.endWorkDate,
       status: this.status,
+      dayReports: [],
     };
 
     this.empService.update(editedEmployee);
@@ -154,8 +168,7 @@ export class UserManagementComponent implements OnInit {
     this.status = '';
     this.editDisplay = false;
   }
-  getEventValue($event:any) :string {
+  getEventValue($event: any): string {
     return $event.target.value;
-  } 
-  
+  }
 }
