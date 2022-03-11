@@ -1,5 +1,5 @@
-<div class="m-3">
-  <label for="calendar">Pick a date: </label>
+<div class="m-3 pick-date-input">
+  <label class="pick-date" for="calendar">Pick a date: </label>
   <p-calendar
     (onClose)="generateDaysInMonth(pickMonthYear)"
     class="ms-3"
@@ -105,19 +105,9 @@
     <p-tabPanel header="Months">
       <div class="row">
         <div class="col-lg-6">
-          <h2 class="mb-3">List of Employees</h2>
+          
         </div>
-        <div class="col-lg-6 export-excel">
-          <button
-            pButton
-            (click)="exportExcelTable()"
-            type="button"
-            label="Export to Excel"
-            icon="pi pi-file-excel"
-            iconPos="left"
-            class="p-button-success p-button-rounded"
-          ></button>
-        </div>
+        <div class="col-lg-6 export-excel"></div>
       </div>
 
       <p-accordion>
@@ -126,7 +116,7 @@
           header="{{ employee.firstName + ' ' + employee.lastName }}"
         >
           <div class="scroll-table">
-            <table id="excel-table" class="table table-borderless">
+            <table class="table table-borderless">
               <thead>
                 <tr class="text-center" style="background-color: white">
                   <th scope="col">Date</th>
@@ -136,7 +126,7 @@
                   <th scope="col">Work Start</th>
                   <th scope="col">Work End</th>
                   <th scope="col">Break</th>
-                  <th>
+                  <!-- <th>
                     <button
                       pButton
                       (click)="saveDayReports(employee)"
@@ -144,7 +134,7 @@
                     >
                       Save
                     </button>
-                  </th>
+                  </th> -->
                 </tr>
               </thead>
 
@@ -208,8 +198,79 @@
       </p-accordion>
     </p-tabPanel>
 
-    <p-tabPanel header="Weeks"> Content 2 </p-tabPanel>
+    <!-- <p-tabPanel header="Export to excel">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2 class="mb-3">List of Employees</h2>
+        </div>
+        <div class="col-lg-6 export-excel">
+          <button
+            pButton
+            (click)="exportExcelTable()"
+            type="button"
+            label="Export to Excel"
+            icon="pi pi-file-excel"
+            iconPos="left"
+            class="p-button-success p-button-rounded"
+          ></button>
+        </div>
+      </div>
 
-    <p-tabPanel header="Days"> Content 3 </p-tabPanel>
+      <p-accordion>
+        <p-accordionTab
+          *ngFor="let employee of employees"
+          header="{{ employee.firstName + ' ' + employee.lastName }}"
+        >
+          <div class="scroll-table">
+            <table id="excel-table" class="table table-borderless">
+              <thead>
+                <tr class="text-center" style="background-color: white">
+                  <th scope="col">Date</th>
+                  <th scope="col">Sick Day</th>
+                  <th scope="col">Vacation</th>
+                  <th scope="col">Work Day</th>
+                  <th scope="col">Work Start</th>
+                  <th scope="col">Work End</th>
+                  <th scope="col">Break</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody *ngFor="let i of interval; let index = index">
+                <tr class="text-center">
+                  <td>
+                    {{ i | date: "dd.M.yyyy" }}
+                    <div style="opacity: 0.5">
+                      {{ "(" + getWeekDayName(i) + ")" }}
+                    </div>
+                  </td>
+                  <td>
+                    {{ employee.dayReports[index].sickDay }}
+                  </td>
+                  <td>
+                    {{ employee.dayReports[index].vacation }}
+                  </td>
+                  <td>
+                    {{ employee.dayReports[index].workDay }}
+                  </td>
+                  <td>
+                    {{ employee.dayReports[index].workStart }}
+                  </td>
+                  <td>
+                    {{ employee.dayReports[index].workEnd }}
+                  </td>
+                  <td>
+                    {{ employee.dayReports[index].breakStart }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </p-tabPanel> -->
+
+    <p-tabPanel header="Weeks"> Weeks </p-tabPanel>
+    <p-tabPanel header="Days"> Days </p-tabPanel>
   </p-tabView>
 </div>

@@ -1,3 +1,44 @@
-td {
-  text-align: center;
+#user-management-table {
+  color: whitesmoke;
+  background-color: #0d1321;
+  width: 100%;
+  border-radius: 10px;
+  border-color: whitesmoke;
+}
+
+tbody > tr > td {
+  padding: 1.3rem !important;
+  font-size: 1.1rem;
+}
+
+thead > tr > th {
+  padding: 1.3rem !important;
+  border-bottom: 1px solid gray !important;
+}
+
+.add-employee, .p-button-success {
+  background-color: #1a936f !important;
+  border-color: #1a936f !important;
+  color: white !important;
+}
+
+.search-input {
+  background-color: #0d1321;
+
+}
+
+
+.title {
+  color: whitesmoke;
+  background-color: #0d1321;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.add-employee:checked {
+  outline: none !important;
+}
+
+.p-button-danger {
+  background-color: red !important;
 }

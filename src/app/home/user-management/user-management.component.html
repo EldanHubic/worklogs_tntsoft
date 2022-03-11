@@ -1,5 +1,5 @@
 <button
-  class="p-button-success m-3"
+  class="p-button-success m-3 add-employee"
   type="button"
   pButton
   (click)="showDialog()"
@@ -35,77 +35,83 @@
           required
         />
       </div>
-
-      <div class="mb-3">
-        <label>Date of birth</label>
-        <!-- <input
-            type="text"
-            formControlName="dateOfBirth"
-            class="form-control"
-            required
-          /> -->
-        <br />
-        <p-calendar
-          formControlName="dateOfBirth"
-          dateFormat="dd.mm.yy"
-          appendTo="body"
-          [showButtonBar]="true"
-          [maxDate]="maxDateValue"
-          [readonlyInput]="true"
-          [showIcon]="true"
-          placeholder="dd.mm.yyyy"
-        ></p-calendar>
-      </div>
-
-      <div class="mb-3">
-        <label>Start of work date</label>
-        <!-- <input
-            type="text"
-            formControlName="dateOfBirth"
-            class="form-control"
-            required
-          /> -->
-        <br />
-        <p-calendar
-          formControlName="startWorkDate"
-          dateFormat="dd.mm.yy"
-          appendTo="body"
-          [showButtonBar]="true"
-          [maxDate]="maxDateValue"
-          [readonlyInput]="true"
-          [showIcon]="true"
-          placeholder="dd.mm.yyyy"
-        ></p-calendar>
-      </div>
-
-      <div class="mb-3">
-        <label>End of work date</label>
-        <!-- <input
-            type="text"
-            formControlName="dateOfBirth"
-            class="form-control"
-            required
-          /> -->
-        <br />
-        <p-calendar
-          formControlName="endWorkDate"
-          dateFormat="dd.mm.yy"
-          appendTo="body"
-          [showButtonBar]="true"
-          [readonlyInput]="true"
-          [showIcon]="true"
-          placeholder="dd.mm.yyyy"
-        ></p-calendar>
-      </div>
-
-      <div class="mb-3">
-        <label>Status</label>
-        <br />
-        <p-dropdown
-          placeholder="Select working status"
-          [options]="selectStatus"
-          formControlName="status"
-        ></p-dropdown>
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-3">
+            <label>Date of birth</label>
+            <!-- <input
+                type="text"
+                formControlName="dateOfBirth"
+                class="form-control"
+                required
+              /> -->
+            <br />
+            <p-calendar
+              formControlName="dateOfBirth"
+              dateFormat="dd.mm.yy"
+              appendTo="body"
+              [showButtonBar]="true"
+              [maxDate]="maxDateValue"
+              [readonlyInput]="true"
+              [showIcon]="true"
+              placeholder="dd.mm.yyyy"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label>Start of work date</label>
+            <!-- <input
+              type="text"
+              formControlName="dateOfBirth"
+              class="form-control"
+              required
+            /> -->
+            <br />
+            <p-calendar
+              formControlName="startWorkDate"
+              dateFormat="dd.mm.yy"
+              appendTo="body"
+              [showButtonBar]="true"
+              [maxDate]="maxDateValue"
+              [readonlyInput]="true"
+              [showIcon]="true"
+              placeholder="dd.mm.yyyy"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label>End of work date</label>
+            <!-- <input
+                type="text"
+                formControlName="dateOfBirth"
+                class="form-control"
+                required
+              /> -->
+            <br />
+            <p-calendar
+              formControlName="endWorkDate"
+              dateFormat="dd.mm.yy"
+              appendTo="body"
+              [showButtonBar]="true"
+              [readonlyInput]="true"
+              [showIcon]="true"
+              placeholder="dd.mm.yyyy"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label>Status</label>
+            <br />
+            <p-dropdown
+              placeholder="Select working status"
+              [options]="selectStatus"
+              formControlName="status"
+            ></p-dropdown>
+          </div>
+        </div>
       </div>
 
       <div class="mb-3">
@@ -157,77 +163,83 @@
         />
       </div>
 
-      <div class="mb-3">
-        <label>dateOfBirth</label>
-        <br />
-        <!-- <input
-          type="text"
-          class="form-control"
-          required
-          [(ngModel)]="dateOfBirth"
-        /> -->
-        <p-calendar
-          [(ngModel)]="dateOfBirth"
-          dateFormat="dd.mm.yy"
-          appendTo="body"
-          [showButtonBar]="true"
-          [maxDate]="maxDateValue"
-          [readonlyInput]="true"
-          [showIcon]="true"
-          placeholder="dd.mm.yyyy"
-        ></p-calendar>
-      </div>
-
-      <div class="mb-3">
-        <label>startWorkDate</label>
-        <!-- <input
-          type="text"
-          class="form-control"
-          required
-          [(ngModel)]="startWorkDate"
-        /> -->
-        <br />
-        <p-calendar
-          [(ngModel)]="startWorkDate"
-          dateFormat="dd.mm.yy"
-          appendTo="body"
-          [showButtonBar]="true"
-          [maxDate]="maxDateValue"
-          [readonlyInput]="true"
-          [showIcon]="true"
-          placeholder="dd.mm.yyyy"
-        ></p-calendar>
-      </div>
-
-      <div class="mb-3">
-        <label>endWorkDate</label>
-        <!-- <input
-          type="text"
-          class="form-control"
-          required
-          [(ngModel)]="endWorkDate"
-        /> -->
-        <br />
-        <p-calendar
-          [(ngModel)]="endWorkDate"
-          dateFormat="dd.mm.yy"
-          appendTo="body"
-          [showButtonBar]="true"
-          [readonlyInput]="true"
-          [showIcon]="true"
-          placeholder="dd.mm.yyyy"
-        ></p-calendar>
-      </div>
-
-      <div class="mb-3">
-        <label>status</label>
-        <!-- <input type="text" class="form-control" required [(ngModel)]="status" /> -->
-        <br />
-        <p-dropdown
-          placeholder="Select working status"
-          [options]="selectStatus"
-          [(ngModel)]="status"
-        ></p-dropdown>
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-3">
+            <label>Date of birth</label>
+            <!-- <input
+                type="text"
+                formControlName="dateOfBirth"
+                class="form-control"
+                required
+              /> -->
+            <br />
+            <p-calendar
+              formControlName="dateOfBirth"
+              dateFormat="dd.mm.yy"
+              appendTo="body"
+              [showButtonBar]="true"
+              [maxDate]="maxDateValue"
+              [readonlyInput]="true"
+              [showIcon]="true"
+              placeholder="dd.mm.yyyy"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label>Start of work date</label>
+            <!-- <input
+              type="text"
+              formControlName="dateOfBirth"
+              class="form-control"
+              required
+            /> -->
+            <br />
+            <p-calendar
+              formControlName="startWorkDate"
+              dateFormat="dd.mm.yy"
+              appendTo="body"
+              [showButtonBar]="true"
+              [maxDate]="maxDateValue"
+              [readonlyInput]="true"
+              [showIcon]="true"
+              placeholder="dd.mm.yyyy"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label>End of work date</label>
+            <!-- <input
+                type="text"
+                formControlName="dateOfBirth"
+                class="form-control"
+                required
+              /> -->
+            <br />
+            <p-calendar
+              formControlName="endWorkDate"
+              dateFormat="dd.mm.yy"
+              appendTo="body"
+              [showButtonBar]="true"
+              [readonlyInput]="true"
+              [showIcon]="true"
+              placeholder="dd.mm.yyyy"
+            ></p-calendar>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label>Status</label>
+            <br />
+            <p-dropdown
+              placeholder="Select working status"
+              [options]="selectStatus"
+              formControlName="status"
+            ></p-dropdown>
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <button
@@ -358,10 +370,25 @@
   </div>
 </div> -->
 <div class="container">
-  <div class="card">
-    <h5 class="p-3">List of employees</h5>
+  <div class="row title">
+    <div class="col-6 text-start">
+      <h5 class="display-5 p-3">List of employees</h5>
+    </div>
+    <div class="col-6 text-end d-flex align-items-center">
+      <div class="input-group search-input">
+        <div class="input-group-prepend ">
+          <i class="pi pe-3 pi-search" style="font-size: 2rem"></i>
+        </div>
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="Search.."
+        />
+      </div>
+    </div>
+  </div>
 
-    <p-table
+  <!-- <p-table
       #dt2
       [value]="employees"
       dataKey="id"
@@ -372,6 +399,7 @@
       [paginator]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [globalFilterFields]="['firstName', 'lastName', 'status']"
+      id="user-management-table"
     >
       <ng-template pTemplate="caption">
         <div class="flex">
@@ -448,9 +476,73 @@
         </tr>
       </ng-template>
     </p-table>
+  </div> -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <table
+        id="user-management-table"
+        class="table table-borderless text-start"
+      >
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Start Work Date</th>
+            <th>End Work Date</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>
+              {{ employee.firstName }}
+            </td>
+            <td>
+              {{ employee.lastName }}
+            </td>
+            <td>12.3.2022</td>
+            <td>12.3.2022</td>
+            <td>12.3.2022</td>
+            <td>
+              <div
+                *ngIf="employee.status === 'ACTIVE'"
+                style="color: lightgreen"
+              >
+                <i class="pi pi-check" style="font-size: 2rem"></i>
+              </div>
+              <div *ngIf="employee.status === 'INACTIVE'" style="color: red">
+                <i class="pi pi-times" style="font-size: 2rem"></i>
+              </div>
+            </td>
+            <td>
+              <button
+                (click)="showEditDialog(employee)"
+                pButton
+                class="p-button-success"
+                icon="pi pi-pencil"
+              ></button>
+            </td>
+
+            <td>
+              <button
+                pButton
+                class="p-button-danger"
+                icon="pi pi-trash"
+                (click)="confirm(employee)"
+              ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
+  <p-confirmDialog
+    header="Confirmation"
+    icon="pi pi-exclamation-triangle"
+  ></p-confirmDialog>
 </div>
-<p-confirmDialog
-  header="Confirmation"
-  icon="pi pi-exclamation-triangle"
-></p-confirmDialog>

@@ -8,23 +8,12 @@ import { Employee } from './models/employee';
   providedIn: 'root',
 })
 export class ExportExcelService {
-  employees: Employee[] = [];
+ 
   constructor(private empService: EmployeeService) {
-    this.empService.get().subscribe((resp) => {
-      this.employees = resp.map((document) => {
-        return {
-          id: document.payload.doc.id,
-          ...(document.payload.doc.data() as {}),
-        } as Employee;
-      });
-    });
+    
   }
 
-
-
-
   generateExcel() {
-    const title = "Employee list";
     
   }
 }

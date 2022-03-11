@@ -1,22 +1,40 @@
-<ul id="sidebar" class="m-0 p-0">
-  <h1 style="padding: 1rem">Worklogs</h1>
+<div id="sidebar">
+  <div class="text-center title"><h1 style="padding: 1rem">Worklogs</h1></div>
 
-  <li routerLink="user-management">User management</li>
-  <li routerLink="logs">Logs</li>
-  <li routerLink="users">Users</li>
-  <li routerLink="dashboard">Dashboard</li>
-  <li>
-    <button
-      pButton
-      class="p-button-danger"
-      label="Logout"
-      (click)="logout()"
-    ></button>
-  </li>
+  <ul class="sidebar-employees">
+    <li routerLink="user-management">
+      <i class="pi pi-user-plus"></i>User management
+    </li>
+    <li routerLink="logs"><i class="pi pi-user-edit"></i>Logs</li>
+  </ul>
 
-  <li class="display-user">
-    Logged in as:
-    {{ email }}
-  </li>
-  
-</ul>
+  <ul class="sidebar-users">
+    <li routerLink="users"><i class="pi pi-users"></i>Users</li>
+    <li routerLink="dashboard"><i class="pi pi-table"></i>Dashboard</li>
+  </ul>
+  <div class="display-user container">
+    <div class="row">
+      <div class="col-lg-6 pt-1">
+        <i class="pi pi-user"></i>{{ displayName }}
+      </div>
+      <div class="col-lg-6 mb-3 text-end">
+        <p-avatar
+         
+          image="{{photoURL}}"
+          pBadge
+          value="4"
+          severity="danger"
+        ></p-avatar>
+      </div>
+    </div>
+
+    <div class="row">
+      <button
+        pButton
+        class="p-button-danger"
+        label="Logout"
+        (click)="logout()"
+      ></button>
+    </div>
+  </div>
+</div>

@@ -37,7 +37,12 @@ export class SidebarComponent implements OnInit {
         } as User;
       });
       onAuthStateChanged(auth, (user) => {
+        
+        
         this.users.forEach((element) => {
+          console.log(element);
+          console.log(user);
+          
           if (element.uid === user?.uid) {
             this.email = element.email;
             this.displayName = element.displayName;
@@ -49,6 +54,8 @@ export class SidebarComponent implements OnInit {
       });
     });
   }
+
+  
 
   logout() {
     this.authService.signOut();

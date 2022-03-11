@@ -9,6 +9,15 @@ thead {
   z-index: 1;
 }
 
+.pick-date {
+  color: whitesmoke;
+}
+
+.pick-date-input {
+  background-color: hsla(220, 44%, 12%, 0.979);
+  padding: 1.3rem;
+  border-radius: 10px;
+}
 
 .p-button.p-button-icon-only {
   width: 4rem;

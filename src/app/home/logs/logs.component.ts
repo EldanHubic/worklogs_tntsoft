@@ -33,6 +33,7 @@ export class LogsComponent implements OnInit {
   employees: Employee[] = [];
   nizZastavica: boolean[] = [];
   interval: Date[] = [];
+  tableForExcel: boolean = false;
   fileName: string = 'employeeTable.xlsx';
 
   ngOnInit(): void {

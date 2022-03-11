@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <h1 class="mb-4">List of users</h1>
+  <h1 class="mb-4 title">List of users</h1>
 
   <!-- <button
     pButton
@@ -48,13 +48,13 @@
   header="Confirmation"
   icon="pi pi-exclamation-triangle"
 ></p-confirmDialog>
-  <p-table
-    [value]="users"
-    styleClass="p-datatable-striped"
+  <table
+   
+   id="user-table"
     *ngIf="admin"
-    responsiveLayout="scroll"
+   class="table table-borderless"
   >
-    <ng-template pTemplate="header">
+    <thead>
       <tr>
         <th>Display Name</th>
         <th>Email</th>
@@ -62,8 +62,8 @@
         <th>Admin</th>
         <th>Delete</th>
       </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
+    </thead>
+    <tbody *ngFor="let user of users">
       <tr>
         <td>{{ user.displayName }}</td>
         <td>{{ user.email }}</td>
@@ -78,6 +78,6 @@
           ></button>
         </td>
       </tr>
-    </ng-template>
-  </p-table>
+    </tbody>
+  </table>
 </div>

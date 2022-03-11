@@ -38,6 +38,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { TabViewModule } from 'primeng/tabview';
+import { PasswordModule } from 'primeng/password';
+import {AvatarModule} from 'primeng/avatar';
+
 
 @NgModule({
   declarations: [
@@ -77,7 +80,9 @@ import { TabViewModule } from 'primeng/tabview';
     CheckboxModule,
     ConfirmDialogModule,
     TabViewModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PasswordModule,
+    AvatarModule
   ],
   providers: [AuthService, ConfirmationService],
   bootstrap: [AppComponent],

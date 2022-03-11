@@ -1,25 +1,49 @@
 #sidebar {
-  background-color: #1f074d;
-  list-style: none;
-
+  
+  background-color: #0d1321;
   height: 100vh;
-  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.title {
+  color: whitesmoke;
+}
+.sidebar-employees {
+  list-style: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+  
+  color: whitesmoke;
+}
+
+.sidebar-users {
+  list-style: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+
+  color: whitesmoke;
+}
+
+.sidebar-employees::after {
+  color: red;
 }
 
 li {
   padding: 1rem;
   cursor: pointer;
-  
+  padding-left: 0;
 }
 
-
-
-li:hover {
-  font-size: 1.3rem;
-  transition: 0.8s;
+i {
+  font-size: 1.2rem;
+  padding-right: 0.5rem;
 }
 
 .display-user {
+  border-top: 1px solid whitesmoke;
+  color: whitesmoke;
+  
+  padding: 10px;
   position: sticky;
   top: 90vh;
 }

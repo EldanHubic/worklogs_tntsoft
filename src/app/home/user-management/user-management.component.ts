@@ -2,14 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { EmployeeService } from 'src/app/employee.service';
-
+import { ViewEncapsulation } from '@angular/core';
 import { Employee } from 'src/app/models/employee';
 import { User } from 'src/app/models/user';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class UserManagementComponent implements OnInit {
   loading: boolean = false;
@@ -22,6 +24,9 @@ export class UserManagementComponent implements OnInit {
   dateOfBirth!: Date;
   startWorkDate!: Date;
   endWorkDate!: Date;
+  a: Date = new Date(this.dateOfBirth);
+  b: Date = new Date(this.startWorkDate);
+  c: Date = new Date(this.endWorkDate);
   status: string = '';
   minDateValue!: Date;
   maxDateValue!: Date;
