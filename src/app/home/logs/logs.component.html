@@ -100,19 +100,16 @@
   </p-accordion>
 </div> -->
 
-<div class="container">
+<!-- <div class="container">
   <p-tabView>
     <p-tabPanel header="Months">
       <div class="row">
-        <div class="col-lg-6">
-          
-        </div>
+        <div class="col-lg-6"></div>
         <div class="col-lg-6 export-excel"></div>
       </div>
 
-      <p-accordion>
+      <p-accordion *ngFor="let employee of employees">
         <p-accordionTab
-          *ngFor="let employee of employees"
           header="{{ employee.firstName + ' ' + employee.lastName }}"
         >
           <div class="scroll-table">
@@ -126,15 +123,7 @@
                   <th scope="col">Work Start</th>
                   <th scope="col">Work End</th>
                   <th scope="col">Break</th>
-                  <!-- <th>
-                    <button
-                      pButton
-                      (click)="saveDayReports(employee)"
-                      icon="pi pi-save ms-1"
-                    >
-                      Save
-                    </button>
-                  </th> -->
+                  
                 </tr>
               </thead>
 
@@ -198,79 +187,188 @@
       </p-accordion>
     </p-tabPanel>
 
-    <!-- <p-tabPanel header="Export to excel">
-      <div class="row">
-        <div class="col-lg-6">
-          <h2 class="mb-3">List of Employees</h2>
-        </div>
-        <div class="col-lg-6 export-excel">
-          <button
-            pButton
-            (click)="exportExcelTable()"
-            type="button"
-            label="Export to Excel"
-            icon="pi pi-file-excel"
-            iconPos="left"
-            class="p-button-success p-button-rounded"
-          ></button>
-        </div>
-      </div>
-
-      <p-accordion>
-        <p-accordionTab
-          *ngFor="let employee of employees"
-          header="{{ employee.firstName + ' ' + employee.lastName }}"
-        >
-          <div class="scroll-table">
-            <table id="excel-table" class="table table-borderless">
-              <thead>
-                <tr class="text-center" style="background-color: white">
-                  <th scope="col">Date</th>
-                  <th scope="col">Sick Day</th>
-                  <th scope="col">Vacation</th>
-                  <th scope="col">Work Day</th>
-                  <th scope="col">Work Start</th>
-                  <th scope="col">Work End</th>
-                  <th scope="col">Break</th>
-                  <th></th>
-                </tr>
-              </thead>
-
-              <tbody *ngFor="let i of interval; let index = index">
-                <tr class="text-center">
-                  <td>
-                    {{ i | date: "dd.M.yyyy" }}
-                    <div style="opacity: 0.5">
-                      {{ "(" + getWeekDayName(i) + ")" }}
-                    </div>
-                  </td>
-                  <td>
-                    {{ employee.dayReports[index].sickDay }}
-                  </td>
-                  <td>
-                    {{ employee.dayReports[index].vacation }}
-                  </td>
-                  <td>
-                    {{ employee.dayReports[index].workDay }}
-                  </td>
-                  <td>
-                    {{ employee.dayReports[index].workStart }}
-                  </td>
-                  <td>
-                    {{ employee.dayReports[index].workEnd }}
-                  </td>
-                  <td>
-                    {{ employee.dayReports[index].breakStart }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </p-accordionTab>
-      </p-accordion>
-    </p-tabPanel> -->
-
     <p-tabPanel header="Weeks"> Weeks </p-tabPanel>
     <p-tabPanel header="Days"> Days </p-tabPanel>
   </p-tabView>
+</div> -->
+
+<button
+  (click)="exportExcelTable()"
+  pButton
+  type="button"
+  label="Export to excel"
+  class="p-button-success m-3"
+  icon="pi pi-file-excel"
+></button>
+
+<div class="m-3">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="pills-home-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-home"
+        type="button"
+        role="tab"
+        aria-controls="pills-home"
+        aria-selected="true"
+      >
+        Months
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="pills-profile-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-profile"
+        type="button"
+        role="tab"
+        aria-controls="pills-profile"
+        aria-selected="false"
+      >
+        Weeks
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="pills-contact-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-contact"
+        type="button"
+        role="tab"
+        aria-controls="pills-contact"
+        aria-selected="false"
+      >
+        Days
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="pills-home"
+      role="tabpanel"
+      aria-labelledby="pills-home-tab"
+    >
+      <div class="accordion" id="accordionFlushExample">
+        <div
+          class="accordion-item"
+          *ngFor="let employee of employees; let i = index"
+        >
+          <h2 class="accordion-header" id="flush-headingOne">
+            <a
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              href="#{{ employee.firstName }}"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              {{ employee.firstName + " " + employee.lastName }}
+            </a>
+          </h2>
+          <div
+            id="{{ employee.firstName }}"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              <div class="scroll-table">
+                <table class="table table-borderless">
+                  <thead>
+                    <tr class="text-center">
+                      <th scope="col">Date</th>
+                      <th scope="col">Sick Day</th>
+                      <th scope="col">Vacation</th>
+                      <th scope="col">Work Day</th>
+                      <th scope="col">Work Start</th>
+                      <th scope="col">Work End</th>
+                      <th scope="col">Break</th>
+                    </tr>
+                  </thead>
+
+                  <tbody *ngFor="let i of interval; let index = index">
+                    <tr class="text-center">
+                      <td class="date-data">
+                        {{ i | date: "dd.M.yyyy" }}
+                        <div style="opacity: 0.5">
+                          {{ "(" + getWeekDayName(i) + ")" }}
+                        </div>
+                      </td>
+                      <td>
+                        <p-checkbox
+                          [(ngModel)]="employee.dayReports[index].sickDay"
+                          [binary]="true"
+                        >
+                        </p-checkbox>
+                      </td>
+                      <td>
+                        <p-checkbox
+                          [(ngModel)]="employee.dayReports[index].vacation"
+                          [binary]="true"
+                        ></p-checkbox>
+                      </td>
+                      <td>
+                        <p-checkbox
+                          [disabled]="true"
+                          [(ngModel)]="employee.dayReports[index].workDay"
+                          [binary]="true"
+                        ></p-checkbox>
+                      </td>
+                      <td>
+                        <label for="timeonly"></label>
+                        <p-calendar
+                          [(ngModel)]="employee.dayReports[index].workStart"
+                          [timeOnly]="true"
+                          inputId="timeonly"
+                        ></p-calendar>
+                      </td>
+                      <td>
+                        <label for="timeonly"></label>
+                        <p-calendar
+                          [(ngModel)]="employee.dayReports[index].workEnd"
+                          [timeOnly]="true"
+                          inputId="timeonly"
+                        ></p-calendar>
+                      </td>
+                      <td>
+                        <label for="timeonly"></label>
+                        <p-calendar
+                          [(ngModel)]="employee.dayReports[index].breakStart"
+                          [timeOnly]="true"
+                          inputId="timeonly"
+                        ></p-calendar>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-profile"
+      role="tabpanel"
+      aria-labelledby="pills-profile-tab"
+      style="color: whitesmoke"
+    >
+      Comming soon...
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-contact"
+      role="tabpanel"
+      aria-labelledby="pills-contact-tab"
+      style="color: whitesmoke"
+    >
+      Comming soon...
+    </div>
+  </div>
 </div>

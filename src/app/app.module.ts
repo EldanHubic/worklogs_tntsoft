@@ -39,7 +39,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { TabViewModule } from 'primeng/tabview';
 import { PasswordModule } from 'primeng/password';
-import {AvatarModule} from 'primeng/avatar';
+import { AvatarModule } from 'primeng/avatar';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -82,7 +83,9 @@ import {AvatarModule} from 'primeng/avatar';
     TabViewModule,
     ReactiveFormsModule,
     PasswordModule,
-    AvatarModule
+    AvatarModule,
+    Ng2SearchPipeModule,
+    
   ],
   providers: [AuthService, ConfirmationService],
   bootstrap: [AppComponent],

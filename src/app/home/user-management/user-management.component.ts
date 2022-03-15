@@ -16,7 +16,7 @@ import { format } from 'date-fns';
 export class UserManagementComponent implements OnInit {
   loading: boolean = false;
   display: boolean = false;
-  search: string = '';
+  private _search: string = '';
   value!: Date;
   selectStatus: string[] = ['ACTIVE', 'INACTIVE'];
   firstName: string = '';
@@ -55,6 +55,14 @@ export class UserManagementComponent implements OnInit {
       status: [''],
       dayReports: [],
     });
+  }
+
+  get search() {
+    return this._search;
+  }
+
+  set search(value: string) {
+    this._search = value;
   }
 
   ngOnInit(): void {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/employee.service';
 import { Employee } from 'src/app/models/employee';
 import * as XLSX from 'xlsx';
+
 import {
   eachDayOfInterval,
   endOfMonth,
@@ -10,6 +11,7 @@ import {
   isWeekend,
   startOfMonth,
 } from 'date-fns';
+
 import { DayReport } from 'src/app/models/dayReport';
 
 @Component({
@@ -76,10 +78,10 @@ export class LogsComponent implements OnInit {
           date: format(day, 'dd.MM.yyyy'),
           sickDay: false,
           vacation: false,
-          workStart: '7:00',
-          workEnd: '15:00',
-          breakStart: '12:00',
-          breakEnd: '13:00',
+          workStart: 7 + ':00',
+          workEnd: 15 + ':00',
+          breakStart: 12 + ':00',
+          breakEnd: this.breakStart + 1 + ':00',
           workDay: !isWeekend(day),
           employeeID: employee.id,
         };
@@ -142,15 +144,18 @@ export class LogsComponent implements OnInit {
   }
 
   exportExcelTable() {
-    /* pass here the table id */
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-
-    /* generate workbook and add the worksheet */
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    /* save to file */
+    this.employees.forEach((employee) => {
+     
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(employee.dayReports);
+      XLSX.utils.book_append_sheet(
+        wb,
+        ws,
+        employee.firstName + ' ' + employee.lastName
+      );
+    });
+
     XLSX.writeFile(wb, this.fileName);
   }
 }

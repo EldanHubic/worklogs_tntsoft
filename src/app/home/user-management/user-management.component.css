@@ -1,6 +1,6 @@
 #user-management-table {
   color: whitesmoke;
-  background-color: #0d1321;
+  background-color: #122047;
   width: 100%;
   border-radius: 10px;
   border-color: whitesmoke;
@@ -16,17 +16,12 @@ thead > tr > th {
   border-bottom: 1px solid gray !important;
 }
 
-.add-employee, .p-button-success {
+.add-employee,
+.p-button-success {
   background-color: #1a936f !important;
   border-color: #1a936f !important;
   color: white !important;
 }
-
-.search-input {
-  background-color: #0d1321;
-
-}
-
 
 .title {
   color: whitesmoke;
@@ -41,4 +36,11 @@ thead > tr > th {
 
 .p-button-danger {
   background-color: red !important;
+}
+
+.search-div {
+  width: 35%;
+}
+.search-input {
+  background-color: #0d1321;
 }
