@@ -287,7 +287,8 @@
                       <th scope="col">Work Day</th>
                       <th scope="col">Work Start</th>
                       <th scope="col">Work End</th>
-                      <th scope="col">Break</th>
+                      <th scope="col">Break Start</th>
+                      <th scope="col">Break End</th>
                     </tr>
                   </thead>
 
@@ -321,27 +322,51 @@
                       </td>
                       <td>
                         <label for="timeonly"></label>
-                        <p-calendar
+                        <input
+                          class="working-hours-input"
                           [(ngModel)]="employee.dayReports[index].workStart"
-                          [timeOnly]="true"
-                          inputId="timeonly"
-                        ></p-calendar>
+                          id="appt-time"
+                          type="time"
+                          name="appt-time"
+                        />
                       </td>
                       <td>
                         <label for="timeonly"></label>
-                        <p-calendar
+                        <input
+                          class="working-hours-input"
                           [(ngModel)]="employee.dayReports[index].workEnd"
-                          [timeOnly]="true"
-                          inputId="timeonly"
-                        ></p-calendar>
+                          id="appt-time"
+                          type="time"
+                          name="appt-time"
+                        />
                       </td>
                       <td>
                         <label for="timeonly"></label>
-                        <p-calendar
-                          [(ngModel)]="employee.dayReports[index].breakStart"
+                        <!-- <p-calendar
                           [timeOnly]="true"
                           inputId="timeonly"
-                        ></p-calendar>
+                        ></p-calendar> -->
+                        <input
+                          class="working-hours-input"
+                          [(ngModel)]="employee.dayReports[index].breakStart"
+                          id="appt-time"
+                          type="time"
+                          name="appt-time"
+                        />
+                      </td>
+                      <td>
+                        <label for="timeonly"></label>
+                        <!-- <p-calendar
+                          [timeOnly]="true"
+                          inputId="timeonly"
+                        ></p-calendar> -->
+                        <input
+                          class="working-hours-input"
+                          [(ngModel)]="employee.dayReports[index].breakEnd"
+                          id="appt-time"
+                          type="time"
+                          name="appt-time"
+                        />
                       </td>
                     </tr>
                   </tbody>

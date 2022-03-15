@@ -50,16 +50,7 @@ export class LogsComponent implements OnInit {
       console.log(this.employees.length);
 
       this.generateDaysInMonth(this.pickMonthYear);
-      // this.employees.forEach((employee) => {
-      //   employee.dayReports.forEach((dayReport) => {
-      //     this.isSickDay = dayReport.sickDay;
-      //     this.isVacation = dayReport.vacation;
-      //     this.isWorkDay = dayReport.workDay;
-      //     this.workStart = dayReport.workStart;
-      //     this.workEnd = dayReport.workEnd;
-      //     this.breakStart = dayReport.breakStart;
-      //   });
-      // });
+      
     });
   }
 
@@ -78,10 +69,10 @@ export class LogsComponent implements OnInit {
           date: format(day, 'dd.MM.yyyy'),
           sickDay: false,
           vacation: false,
-          workStart: 7 + ':00',
-          workEnd: 15 + ':00',
-          breakStart: 12 + ':00',
-          breakEnd: this.breakStart + 1 + ':00',
+          workStart: '07:00',
+          workEnd: '15:00',
+          breakStart: '12:00',
+          breakEnd: '13:00',
           workDay: !isWeekend(day),
           employeeID: employee.id,
         };
@@ -147,7 +138,6 @@ export class LogsComponent implements OnInit {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
 
     this.employees.forEach((employee) => {
-     
       const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(employee.dayReports);
       XLSX.utils.book_append_sheet(
         wb,
