@@ -45,15 +45,13 @@
     </div>
   </p-dialog> -->
   <p-confirmDialog
-  header="Confirmation"
-  icon="pi pi-exclamation-triangle"
-></p-confirmDialog>
-  <table
-   
-   id="user-table"
-    *ngIf="admin"
-   class="table table-borderless"
-  >
+    header="Confirmation"
+    icon="pi pi-exclamation-triangle"
+  ></p-confirmDialog>
+</div>
+
+<div class="container-fluid">
+  <table id="user-table" *ngIf="admin" class="table table-borderless">
     <thead>
       <tr>
         <th>Display Name</th>

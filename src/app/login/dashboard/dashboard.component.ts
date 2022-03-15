@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   admin: boolean | null | undefined;
   users: User[] = [];
   user!: User;
+  imagePath: string = 'user.jpg';
 
   ngOnInit(): void {
     const auth = getAuth();

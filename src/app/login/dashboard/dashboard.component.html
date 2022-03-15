@@ -1,5 +1,4 @@
-<!-- Sidebar navigation -->
-<div class="container-fluid p-5" *ngIf="admin">
+<!-- <div id="main-container" class="container-fluid p-5" *ngIf="admin">
   <div class="row">
     <nav class="col-md-2 d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
@@ -10,27 +9,19 @@
               Profile
             </a>
           </li>
-          <!-- Calling SignOut() Api from AuthService -->
         </ul>
       </div>
     </nav>
-    <!-- Main content -->
+
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="inner-adjust">
         <div class="pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">User Profile</h1>
         </div>
-        <!-- Show user data when logged in -->
+
         <div class="row" *ngIf="authService.userData as user">
           <div class="col-md-12">
             <div class="media">
-              <!-- <img
-                class="align-self-start mr-5 img-thumbnail rounded-circle"
-                src="{{
-                  
-                }}"
-                alt="{{ user.displayName }}"
-              /> -->
               <div class="media-body">
                 <h1>
                   Hello:
@@ -52,5 +43,48 @@
         </div>
       </div>
     </main>
+  </div>
+</div> -->
+<div id="main-container" class="container-fluid">
+  <div class="row" *ngIf="authService.userData as user">
+    <div id="leftSide-userInfo" class="col-lg-4">
+      <img class="user-avatar mb-5" [src]="photoURL" alt="user-image" />
+      <div>
+        <h4>
+          Email: <span>{{ email }}</span>
+        </h4>
+      </div>
+
+      <div>
+        <h4 class="mt-3">
+          Display name: <span>{{ displayName }}</span>
+        </h4>
+      </div>
+
+      <div>
+        <h4 class="mt-3">
+          Email verified:
+          <span *ngIf="emailVerified === true" style="color: lightgreen">
+            <i class="pi pi-check" style="font-size: 1.5rem"></i>
+          </span>
+          <span *ngIf="emailVerified === false" style="color: red">
+            <i class="pi pi-times" style="font-size: 1.5rem"></i>
+          </span>
+        </h4>
+      </div>
+
+      <div>
+        <h4 class="mt-3">
+          Admin:
+          <span *ngIf="admin === true" style="color: lightgreen">
+            <i class="pi pi-check" style="font-size: 1.5rem"></i>
+          </span>
+          <span *ngIf="admin === false" style="color: red">
+            <i class="pi pi-times" style="font-size: 1.5rem"></i>
+          </span>
+        </h4>
+      </div>
+    </div>
+    <div id="rightSide-userInfo" class="col-lg-8 p-5">Comming soon...</div>
   </div>
 </div>
