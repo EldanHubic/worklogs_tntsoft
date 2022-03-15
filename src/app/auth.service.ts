@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +17,6 @@ export class AuthService {
     this.userData = afAuth.authState;
   }
 
-  
   SignIn(email: string, password: string) {
     this.afAuth
       .signInWithEmailAndPassword(email, password)
@@ -36,7 +34,7 @@ export class AuthService {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log('You are Successfully signed up!', res);
+        // console.log('You are Successfully signed up!', res);
         this.afs.collection('users').add({
           id: res.user?.uid,
           displayName: displayName,
@@ -45,7 +43,8 @@ export class AuthService {
           emailVerified: res.user?.emailVerified,
           admin: false,
         });
-        
+        console.log('You are Successfully signed up!', res);
+        this.router.navigate(['login']);
       })
       .catch((error) => {
         console.log('Something is wrong:', error.message);
@@ -70,6 +69,7 @@ export class AuthService {
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');
+        this.router.navigate(['login']);
       })
       .catch((error) => {
         window.alert(error);

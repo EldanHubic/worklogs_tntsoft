@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
       });
       onAuthStateChanged(auth, (user) => {
         this.users.forEach((element) => {
-          if (element.uid === user?.uid) {
+          if (element.id === user?.uid) {
             this.email = element.email;
             this.displayName = element.displayName;
             this.photoURL = element.photoURL;

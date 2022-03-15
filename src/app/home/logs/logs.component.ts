@@ -116,7 +116,7 @@ export class LogsComponent implements OnInit {
         break;
       }
       case 7: {
-        dayName = 'Saturday ';
+        dayName = 'Saturday';
         break;
       }
       default:

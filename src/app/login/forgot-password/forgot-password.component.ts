@@ -8,6 +8,6 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   constructor(public authService: AuthService) {}
-
+  passwordResetEmail: string = '';
   ngOnInit(): void {}
 }

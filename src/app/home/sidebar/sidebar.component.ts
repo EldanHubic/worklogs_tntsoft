@@ -40,10 +40,8 @@ export class SidebarComponent implements OnInit {
         
         
         this.users.forEach((element) => {
-          console.log(element);
-          console.log(user);
-          
-          if (element.uid === user?.uid) {
+         
+          if (element.id === user?.uid) {
             this.email = element.email;
             this.displayName = element.displayName;
             this.photoURL = element.photoURL;
