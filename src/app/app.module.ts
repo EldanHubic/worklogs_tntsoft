@@ -41,7 +41,8 @@ import { TabViewModule } from 'primeng/tabview';
 import { PasswordModule } from 'primeng/password';
 import { AvatarModule } from 'primeng/avatar';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     PasswordModule,
     AvatarModule,
     Ng2SearchPipeModule,
-    
+    MessagesModule,
+    MessageModule,
   ],
   providers: [AuthService, ConfirmationService],
   bootstrap: [AppComponent],

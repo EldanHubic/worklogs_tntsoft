@@ -38,14 +38,21 @@ export class UsersComponent implements OnInit {
           ...(document.payload.doc.data() as {}),
         } as User;
       });
+      console.log(this.users);
+
       onAuthStateChanged(auth, (user) => {
+        console.log(user);
+
         this.users.forEach((element) => {
-          if (element.uid === user?.uid) {
+          if (element.id === user?.uid) {
             this.email = element.email;
             this.displayName = element.displayName;
             this.photoURL = element.photoURL;
             this.emailVerified = element.emailVerified;
             this.admin = element.admin;
+            console.log('condition true');
+          } else {
+            console.log('condition false');
           }
         });
       });

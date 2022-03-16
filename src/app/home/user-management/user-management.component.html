@@ -7,6 +7,15 @@
   label="Add employee"
 ></button>
 
+<div class="container text-start" >
+  <p-messages
+   
+    [hideTransitionOptions]="'0ms'"
+    [(value)]="successMsgs"
+    [enableService]="false"
+  ></p-messages>
+</div>
+
 <p-dialog
   [(visible)]="display"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
@@ -361,7 +370,7 @@
       [loading]="loading"
       [paginator]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [globalFilterFields]="['firstName', 'lastName', 'status']"
+      [globalFilterFields]="['firstName', 'lastName', 'status', 'dateOfBirth']"
       id="user-management-table"
     >
       <ng-template pTemplate="caption">
@@ -468,8 +477,8 @@
               {{ employee.lastName }}
             </td>
             <td>{{ employee.dateOfBirth.toDate() | date: "dd.MM.yyyy" }}</td>
-            <td>{{employee.startWorkDate.toDate() | date: 'dd.MM.yyyy'}}</td>
-            <td>{{employee.endWorkDate.toDate() | date: 'dd.MM.yyyy'}}</td>
+            <td>{{ employee.startWorkDate.toDate() | date: "dd.MM.yyyy" }}</td>
+            <td>{{ employee.endWorkDate.toDate() | date: "dd.MM.yyyy" }}</td>
             <td>
               <div
                 *ngIf="employee.status === 'ACTIVE'"

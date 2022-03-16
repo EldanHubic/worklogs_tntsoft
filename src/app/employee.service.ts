@@ -12,6 +12,10 @@ import { User } from './models/user';
 })
 export class EmployeeService {
   constructor(private firestore: AngularFirestore) {}
+  
+ 
+
+ 
 
   getUserDoc(id: string) {
     return this.firestore.collection('Employee').doc(id).valueChanges();
@@ -33,6 +37,7 @@ export class EmployeeService {
         .then(
           (response) => {
             console.log(response);
+            
           },
           (error) => reject(error)
         );

@@ -21,9 +21,9 @@ export class UserManagementComponent implements OnInit {
   selectStatus: string[] = ['ACTIVE', 'INACTIVE'];
   firstName: string = '';
   lastName: string = '';
-  dateOfBirth!: Date;
-  startWorkDate!: Date;
-  endWorkDate!: Date;
+  dateOfBirth: Date = new Date();
+  startWorkDate: Date = new Date();
+  endWorkDate: Date = new Date();
   a: Date = new Date(this.dateOfBirth);
   b: Date = new Date(this.startWorkDate);
   c: Date = new Date(this.endWorkDate);
@@ -37,21 +37,23 @@ export class UserManagementComponent implements OnInit {
   first = 0;
   rows = 10;
   editDisplay: boolean = false;
+  successMsgs: any[] = [];
+  successMessage: string = '';
 
   employees: Employee[] = [];
   users: User[] = [];
 
   constructor(
-    private empService: EmployeeService,
+    public empService: EmployeeService,
     public formBuilder: FormBuilder,
     private confirmationService: ConfirmationService
   ) {
     this.employeeForm = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
-      dateOfBirth: [],
-      startWorkDate: [],
-      endWorkDate: [],
+      dateOfBirth: new Date(),
+      startWorkDate: new Date(),
+      endWorkDate: new Date(),
       status: [''],
       dayReports: [],
     });
@@ -84,16 +86,21 @@ export class UserManagementComponent implements OnInit {
     });
 
     let today = new Date();
-    let month = today.getMonth();
-    let year = today.getFullYear();
-    let prevMonth = month === 0 ? 11 : month - 1;
-
-    let nextMonth = month === 11 ? 0 : month + 1;
-
     this.maxDateValue = today;
   }
 
+  addSuccessMessage() {
+    this.successMsgs = [
+      {
+        severity: 'success',
+        summary: 'Success',
+        detail: `Employee added!`,
+      },
+    ];
+  }
+
   addEmployee() {
+
     this.empService.add(this.employeeForm.value);
     this.employeeForm = this.formBuilder.group({
       firstName: [''],
@@ -105,6 +112,7 @@ export class UserManagementComponent implements OnInit {
       dayReports: [],
     });
     this.display = false;
+    this.addSuccessMessage();
   }
 
   next() {

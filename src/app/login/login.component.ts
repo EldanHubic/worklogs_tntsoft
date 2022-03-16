@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,16 +8,18 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private primengConfig: PrimeNGConfig
+  ) {}
   username: string = '';
   password: string = '';
   
+
   ngOnInit(): void {}
 
-  login(username: string, password: string) {
-    this.authService.SignIn(username, password);
-    this.username = '';
-    this.password = '';
-    
-  }
+
+
+  
+  
 }

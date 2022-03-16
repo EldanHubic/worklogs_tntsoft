@@ -1,11 +1,11 @@
 export interface DayReport {
   date: string;
-  sickDay: boolean;
-  vacation: boolean;
+  sickDay: any;
+  vacation: any;
   workStart: any;
   workEnd: any;
   breakStart: any;
   breakEnd: any;
-  workDay: boolean;
+  workDay: any;
   employeeID: string;
 }

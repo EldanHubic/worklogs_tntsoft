@@ -54,6 +54,7 @@
   <table id="user-table" *ngIf="admin" class="table table-borderless">
     <thead>
       <tr>
+        
         <th>Display Name</th>
         <th>Email</th>
         <th>Email Verified</th>
@@ -62,7 +63,7 @@
       </tr>
     </thead>
     <tbody *ngFor="let user of users">
-      <tr>
+      <tr >
         <td>{{ user.displayName }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.emailVerified }}</td>

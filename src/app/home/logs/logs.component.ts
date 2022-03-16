@@ -50,7 +50,6 @@ export class LogsComponent implements OnInit {
       console.log(this.employees.length);
 
       this.generateDaysInMonth(this.pickMonthYear);
-      
     });
   }
 
@@ -134,11 +133,17 @@ export class LogsComponent implements OnInit {
     console.log(employee);
   }
 
-  exportExcelTable() {
+  exportExcelTable(pickedMonth: Date) {
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
 
     this.employees.forEach((employee) => {
+      employee.dayReports.forEach((dayReport) => {
+        dayReport.employeeID = '';
+        dayReport.sickDay = dayReport.sickDay ? 'true' : 'false';
+        dayReport.vacation = dayReport.vacation ? 'true' : 'false';
+      });
       const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(employee.dayReports);
+
       XLSX.utils.book_append_sheet(
         wb,
         ws,
@@ -147,5 +152,6 @@ export class LogsComponent implements OnInit {
     });
 
     XLSX.writeFile(wb, this.fileName);
+    this.generateDaysInMonth(pickedMonth);
   }
 }

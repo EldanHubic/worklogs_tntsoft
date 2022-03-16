@@ -48,7 +48,13 @@
           [(ngModel)]="password"
         />
       </div>
-
+      <div>
+        <p-messages
+          [hideTransitionOptions]="'0ms'"
+          [(value)]="authService.msgs"
+          [enableService]="false"
+        ></p-messages>
+      </div>
       <div
         class="register p-0 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"
       >
@@ -62,7 +68,7 @@
           class="mt-3 mb-3"
           pButton
           label="Register"
-          (click)="register(username, password, displayName)"
+          (click)="authService.SignUp(username, password, displayName)"
         ></button>
       </div>
     </div>

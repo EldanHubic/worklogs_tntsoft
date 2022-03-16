@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   userData: any;
+  errorMessage: string = '';
+  msgs: any[] = [];
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -17,16 +19,30 @@ export class AuthService {
     this.userData = afAuth.authState;
   }
 
+  addMessages() {
+    this.msgs = [
+      {
+        severity: 'error',
+        summary: 'Error',
+        detail: this.errorMessage,
+      },
+    ];
+  }
+
   SignIn(email: string, password: string) {
     this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         console.log(`You're in!`, res);
         localStorage.setItem('user', JSON.stringify(res));
+        email = '';
+        password = '';
         this.router.navigate(['home/user-management']);
       })
       .catch((err) => {
-        console.log('Something went wrong:', err.message);
+        this.errorMessage = err.message;
+
+        this.addMessages();
       });
   }
 
@@ -46,8 +62,10 @@ export class AuthService {
         console.log('You are Successfully signed up!', res);
         this.router.navigate(['login']);
       })
-      .catch((error) => {
-        console.log('Something is wrong:', error.message);
+      .catch((err) => {
+        this.errorMessage = err.message;
+
+        this.addMessages();
       });
   }
 
