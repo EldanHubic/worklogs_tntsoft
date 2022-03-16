@@ -46,7 +46,7 @@ export class AuthService {
       });
   }
 
-  SignUp(email: string, password: string, displayName: string) {
+  SignUp(email: string, password: string, displayName: string, photoURL: string) {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
@@ -55,7 +55,7 @@ export class AuthService {
           id: res.user?.uid,
           displayName: displayName,
           email: res.user?.email,
-          photoURL: res.user?.photoURL,
+          photoURL: photoURL,
           emailVerified: res.user?.emailVerified,
           admin: false,
         });

@@ -15,12 +15,21 @@
       [(ngModel)]="username"
     /> -->
       <div class="p-inputgroup mb-4">
-        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <span class="p-inputgroup-addon"><i class="pi pi-id-card"></i></span>
         <input
           type="text"
           pInputText
           placeholder="Display Name"
           [(ngModel)]="displayName"
+        />
+      </div>
+      <div class="p-inputgroup mb-4">
+        <span class="p-inputgroup-addon"><i class="pi pi-link"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Photo URL"
+          [(ngModel)]="photoURL"
         />
       </div>
       <div class="p-inputgroup mb-4">
@@ -68,7 +77,7 @@
           class="mt-3 mb-3"
           pButton
           label="Register"
-          (click)="authService.SignUp(username, password, displayName)"
+          (click)="authService.SignUp(username, password, displayName, photoURL)"
         ></button>
       </div>
     </div>

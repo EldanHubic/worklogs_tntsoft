@@ -1,6 +1,10 @@
 <div class="container mt-3">
   <h1 class="mb-4 title">List of users</h1>
-
+  <p-messages
+    [hideTransitionOptions]="'0ms'"
+    [(value)]="successMsgs"
+    [enableService]="false"
+  ></p-messages>
   <!-- <button
     pButton
     class="p-button-info mt-4 mb-4"
@@ -54,7 +58,6 @@
   <table id="user-table" *ngIf="admin" class="table table-borderless">
     <thead>
       <tr>
-        
         <th>Display Name</th>
         <th>Email</th>
         <th>Email Verified</th>
@@ -63,7 +66,7 @@
       </tr>
     </thead>
     <tbody *ngFor="let user of users">
-      <tr >
+      <tr>
         <td>{{ user.displayName }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.emailVerified }}</td>

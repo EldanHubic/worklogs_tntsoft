@@ -3,6 +3,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ConfirmationService } from 'primeng/api';
 import { AuthService } from 'src/app/auth.service';
 import { EmployeeService } from 'src/app/employee.service';
+
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -27,6 +28,7 @@ export class UsersComponent implements OnInit {
   admin: boolean | null | undefined;
   users: User[] = [];
   user!: User;
+  successMsgs: any[] = [];
 
   ngOnInit(): void {
     const auth = getAuth();
@@ -59,11 +61,22 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  deleteEmployeeSuccessMessage(user: User) {
+    this.successMsgs = [
+      {
+        severity: 'info',
+        summary: 'Info',
+        detail: `User ${user.displayName} - ${user.email} deleted!`,
+      },
+    ];
+  }
+
   confirm(user: User) {
     this.confirmationService.confirm({
       message: 'Are you sure that you want to perform this action?',
       accept: () => {
         this.deleteUser(user);
+        this.deleteEmployeeSuccessMessage(user);
       },
     });
   }
@@ -81,11 +94,11 @@ export class UsersComponent implements OnInit {
     this.display = true;
   }
 
-  register(username: string, password: string, displayName: string) {
-    this.authService.SignUp(username, password, displayName);
-    this.username = '';
-    this.password = '';
-    this.displayNameForReg = '';
-    this.display = false;
-  }
+  // register(username: string, password: string, displayName: string) {
+  //   this.authService.SignUp(username, password, displayName);
+  //   this.username = '';
+  //   this.password = '';
+  //   this.displayNameForReg = '';
+  //   this.display = false;
+  // }
 }

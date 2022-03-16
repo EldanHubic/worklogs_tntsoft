@@ -5,7 +5,6 @@ import { EmployeeService } from 'src/app/employee.service';
 import { ViewEncapsulation } from '@angular/core';
 import { Employee } from 'src/app/models/employee';
 import { User } from 'src/app/models/user';
-import { format } from 'date-fns';
 
 @Component({
   selector: 'app-user-management',
@@ -38,7 +37,7 @@ export class UserManagementComponent implements OnInit {
   rows = 10;
   editDisplay: boolean = false;
   successMsgs: any[] = [];
-  successMessage: string = '';
+  
 
   employees: Employee[] = [];
   users: User[] = [];
@@ -89,7 +88,7 @@ export class UserManagementComponent implements OnInit {
     this.maxDateValue = today;
   }
 
-  addSuccessMessage() {
+  addEmployeeSuccessMessage() {
     this.successMsgs = [
       {
         severity: 'success',
@@ -99,20 +98,39 @@ export class UserManagementComponent implements OnInit {
     ];
   }
 
-  addEmployee() {
+  editEmployeeSuccessMessage(employee: Employee) {
+    this.successMsgs = [
+      {
+        severity: 'success',
+        summary: 'Success',
+        detail: `Employee ${employee.firstName} ${employee.lastName} edited!`,
+      },
+    ];
+  }
 
+  deleteEmployeeSuccessMessage(employee: Employee) {
+    this.successMsgs = [
+      {
+        severity: 'info',
+        summary: 'Info',
+        detail: `Employee ${employee.firstName} ${employee.lastName} deleted!`,
+      },
+    ];
+  }
+
+  addEmployee() {
     this.empService.add(this.employeeForm.value);
     this.employeeForm = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
-      dateOfBirth: [],
-      startWorkDate: [],
-      endWorkDate: [],
+      dateOfBirth: this.dateOfBirth,
+      startWorkDate: this.startWorkDate,
+      endWorkDate: this.endWorkDate,
       status: [''],
       dayReports: [],
     });
     this.display = false;
-    this.addSuccessMessage();
+    this.addEmployeeSuccessMessage();
   }
 
   next() {
@@ -152,6 +170,7 @@ export class UserManagementComponent implements OnInit {
       message: 'Are you sure that you want to perform this action?',
       accept: () => {
         this.deleteEmployee(employee);
+        this.deleteEmployeeSuccessMessage(employee);
       },
     });
   }
@@ -188,6 +207,7 @@ export class UserManagementComponent implements OnInit {
     this.endWorkDate;
     this.status = '';
     this.editDisplay = false;
+    this.editEmployeeSuccessMessage(editedEmployee);
   }
   getEventValue($event: any): string {
     return $event.target.value;
