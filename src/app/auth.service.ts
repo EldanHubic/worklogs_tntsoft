@@ -19,12 +19,22 @@ export class AuthService {
     this.userData = afAuth.authState;
   }
 
-  addMessages() {
+  addErrorMessages() {
     this.msgs = [
       {
         severity: 'error',
         summary: 'Error',
         detail: this.errorMessage,
+      },
+    ];
+  }
+
+  addSuccessRegisterMessage() {
+    this.msgs = [
+      {
+        severity: 'success',
+        summary: 'Success',
+        detail: `You've succesfully signed up`,
       },
     ];
   }
@@ -42,15 +52,20 @@ export class AuthService {
       .catch((err) => {
         this.errorMessage = err.message;
 
-        this.addMessages();
+        this.addErrorMessages();
       });
   }
 
-  SignUp(email: string, password: string, displayName: string, photoURL: string) {
+  SignUp(
+    email: string,
+    password: string,
+    displayName: string,
+    photoURL: string
+  ) {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        // console.log('You are Successfully signed up!', res);
+        this.addSuccessRegisterMessage();
         this.afs.collection('users').add({
           id: res.user?.uid,
           displayName: displayName,
@@ -59,13 +74,13 @@ export class AuthService {
           emailVerified: res.user?.emailVerified,
           admin: false,
         });
-        console.log('You are Successfully signed up!', res);
-        this.router.navigate(['login']);
+        this.addSuccessRegisterMessage();
+        setTimeout(() => this.router.navigate(['login']), 2000);
       })
       .catch((err) => {
         this.errorMessage = err.message;
 
-        this.addMessages();
+        this.addErrorMessages();
       });
   }
 

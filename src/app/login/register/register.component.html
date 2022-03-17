@@ -35,10 +35,11 @@
       <div class="p-inputgroup mb-4">
         <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
         <input
-          type="text"
+          type="email"
           pInputText
-          placeholder="Username"
+          placeholder="email"
           [(ngModel)]="username"
+          required
         />
       </div>
       <!-- <input
@@ -55,6 +56,7 @@
           pInputText
           placeholder="Password"
           [(ngModel)]="password"
+          required
         />
       </div>
       <div>

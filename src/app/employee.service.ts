@@ -52,6 +52,14 @@ export class EmployeeService {
     return this.firestore.collection('users').doc(user.uid).delete();
   }
 
+
+  updateUserPicture(user: User, photoURL: string) {
+    return this.firestore.collection('users').doc(user.uid).update({
+      photoURL: photoURL
+    })
+  }
+  
+
   update(employee: Employee) {
     return this.firestore.collection('Employee').doc(employee.id).update({
       firstName: employee.firstName,
@@ -62,4 +70,7 @@ export class EmployeeService {
       status: employee.status,
     });
   }
+
+
+  
 }

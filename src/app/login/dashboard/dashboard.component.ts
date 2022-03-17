@@ -19,9 +19,11 @@ export class DashboardComponent implements OnInit {
   displayName: string | null | undefined;
   photoURL: string | null | undefined;
   emailVerified: boolean | null | undefined;
-  admin: boolean | null | undefined;
+  admin!: boolean;
   users: User[] = [];
   user!: User;
+  id!: string;
+  uid!: string;
   imagePath: string = 'user.jpg';
 
   ngOnInit(): void {
@@ -42,9 +44,25 @@ export class DashboardComponent implements OnInit {
             this.photoURL = element.photoURL;
             this.emailVerified = element.emailVerified;
             this.admin = element.admin;
+            this.id = element.id,
+            this.uid = element.uid
           }
         });
       });
     });
+  }
+
+  changePicture(photoURL: string) {
+    let user: User = {
+      email: this.email,
+      displayName: this.displayName,
+      photoURL: photoURL,
+      emailVerified: this.emailVerified,
+      admin: this.admin,
+      id: this.id,
+      uid: this.uid
+    }
+
+    this.empService.updateUserPicture(user, photoURL)
   }
 }
